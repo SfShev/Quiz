@@ -45,6 +45,7 @@
         android:weightSum="2">
 
         <LinearLayout
+            android:id="@+id/filmLayout"
             android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -71,6 +72,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/multLayout"
             android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -112,6 +114,7 @@
         android:weightSum="2">
 
         <LinearLayout
+            android:id="@+id/animeLayout"
             android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
@@ -138,6 +141,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/serialLayout"
             android:layout_width="5dp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
