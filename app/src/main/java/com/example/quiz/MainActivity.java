@@ -2,9 +2,12 @@ package com.example.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         final LinearLayout mult = findViewById(R.id.multLayout);
         final LinearLayout anime = findViewById(R.id.animeLayout);
         final LinearLayout serial = findViewById(R.id.serialLayout);
+        final Button btnstart = findViewById(R.id.btnstart);
 
         film.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
         mult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +82,21 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        btnstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(selectedTopic.isEmpty()){
+                    Toast.makeText(MainActivity.this, "Выберите категорию",Toast.LENGTH_SHORT).show();}
+                    else{
+                    Intent intent = new Intent(MainActivity.this,QuizActivity.class);
+                    intent.putExtra("selectedTopic",selectedTopic);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
+
 
 
     }
