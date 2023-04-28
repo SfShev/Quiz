@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +27,9 @@ public class QuizActivity extends AppCompatActivity {
     private int seconds = 0;
     private int totalTimeInMins = 1;
 
-    private final List<QuestionsList> questionsLists = new ArrayList<>();
+    private List<QuestionsList> questionsLists;
+    private int currentQuestionPosition = 0;
+    private String selectedOptionByUser = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,16 @@ public class QuizActivity extends AppCompatActivity {
 
         selectedTopicName.setText(getSelectedTopic);
 
+        questionsLists = QuestionsBank.qetQuestions(getSelectedTopic);
+
         startTimer(timer);
+
+        numberOfQuestion.setText((currentQuestionPosition + 1) + "/" + (questionsLists.size()));
+        question.setText(questionsLists.get(0).getQuestion());
+        option1.setText(questionsLists.get(0).getOption1());
+        option2.setText(questionsLists.get(0).getOption2());
+        option3.setText(questionsLists.get(0).getOption3());
+        option4.setText(questionsLists.get(0).getOption4());
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,7 +71,7 @@ public class QuizActivity extends AppCompatActivity {
                 quizTimer.purge();
                 quizTimer.cancel();
 
-                startActivity(new Intent(QuizActivity.this,MainActivity.class));
+                startActivity(new Intent(QuizActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -67,6 +79,11 @@ public class QuizActivity extends AppCompatActivity {
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()){
+                    selectedOptionByUser = option1.getText().toString();
+                    option1.setBackgroundResource(R.drawable.round_back_red10);
+                    option1.setTextColor(Color.WHITE);
+                }
 
             }
         });
@@ -179,7 +196,7 @@ public class QuizActivity extends AppCompatActivity {
         quizTimer.purge();
         quizTimer.cancel();
 
-        startActivity(new Intent(QuizActivity.this,MainActivity.class));
+        startActivity(new Intent(QuizActivity.this, MainActivity.class));
         finish();
     }
 }
