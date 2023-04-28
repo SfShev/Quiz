@@ -79,10 +79,13 @@ public class QuizActivity extends AppCompatActivity {
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (selectedOptionByUser.isEmpty()){
+                if (selectedOptionByUser.isEmpty()) {
                     selectedOptionByUser = option1.getText().toString();
                     option1.setBackgroundResource(R.drawable.round_back_red10);
                     option1.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
                 }
 
             }
@@ -91,17 +94,43 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option2.getText().toString();
+                    option2.setBackgroundResource(R.drawable.round_back_red10);
+                    option2.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
+
             }
         });
         option3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option3.getText().toString();
+                    option3.setBackgroundResource(R.drawable.round_back_red10);
+                    option3.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
 
             }
         });
         option4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if (selectedOptionByUser.isEmpty()) {
+                    selectedOptionByUser = option4.getText().toString();
+                    option4.setBackgroundResource(R.drawable.round_back_red10);
+                    option4.setTextColor(Color.WHITE);
+
+                    revealAnswer();
+                    questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                }
 
             }
         });
@@ -198,5 +227,23 @@ public class QuizActivity extends AppCompatActivity {
 
         startActivity(new Intent(QuizActivity.this, MainActivity.class));
         finish();
+    }
+
+    private void revealAnswer() {
+        final String getAnswer = questionsLists.get(currentQuestionPosition).getAnswer();
+        if (option1.getText().toString().equals(getAnswer)) {
+            option1.setBackgroundResource(R.drawable.round_back_green10);
+            option1.setTextColor(Color.WHITE);
+        } else if (option2.getText().toString().equals(getAnswer)) {
+            option2.setBackgroundResource(R.drawable.round_back_green10);
+            option2.setTextColor(Color.WHITE);
+        } else if (option3.getText().toString().equals(getAnswer)) {
+            option3.setBackgroundResource(R.drawable.round_back_green10);
+            option3.setTextColor(Color.WHITE);
+        } else if (option4.getText().toString().equals(getAnswer)) {
+            option4.setBackgroundResource(R.drawable.round_back_green10);
+            option4.setTextColor(Color.WHITE);
+        }
+
     }
 }
