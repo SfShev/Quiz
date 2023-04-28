@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,50 @@ public class QuizActivity extends AppCompatActivity {
         final String getSelectedTopic = getIntent().getStringExtra("selectedTopic");
 
         selectedTopicName.setText(getSelectedTopic);
+
+        startTimer(timer);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quizTimer.purge();
+                quizTimer.cancel();
+
+                startActivity(new Intent(QuizActivity.this,MainActivity.class));
+                finish();
+            }
+        });
+
+        option1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        option4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 
@@ -127,5 +172,14 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         return correctAnswers;
+    }
+
+    @Override
+    public void onBackPressed() {
+        quizTimer.purge();
+        quizTimer.cancel();
+
+        startActivity(new Intent(QuizActivity.this,MainActivity.class));
+        finish();
     }
 }
