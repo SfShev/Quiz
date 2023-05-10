@@ -1,15 +1,26 @@
 package com.example.quiz;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +28,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class QuizActivity extends AppCompatActivity {
+
+    private InterstitialAd mInterstitialAd;
     private TextView numberOfQuestion;
     private TextView question;
 
@@ -35,6 +48,14 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+
+        LoadAds();
 
         final ImageView backBtn = findViewById(R.id.backBtn);
         final TextView timer = findViewById(R.id.timer);
@@ -277,15 +298,66 @@ public class QuizActivity extends AppCompatActivity {
             option2.setText(questionsLists.get(currentQuestionPosition).getOption2());
             option3.setText(questionsLists.get(currentQuestionPosition).getOption3());
             option4.setText(questionsLists.get(currentQuestionPosition).getOption4());
-        } else{
-            Intent intent = new Intent(QuizActivity.this,QuizResults.class);
+        } else {
 
-            intent.putExtra("correct",getCorrectAnswers());
-            intent.putExtra("incorrect", getInCorrectAnswers());
+            if (mInterstitialAd != null) {
+                mInterstitialAd.show(QuizActivity.this);
+                mInterstitialAd.setFullScreenContentCallback(new FullScreenContentCallback() {
+                    @Override
+                    public void onAdDismissedFullScreenContent() {
+                        // Called when ad is dismissed.
+                        // Set the ad reference to null so you don't show the ad a second time.
+                        Log.d("TAG", "Ad dismissed fullscreen content.");
 
 
-            startActivity(intent);
-            finish();
+                        Intent intent = new Intent(QuizActivity.this, QuizResults.class);
+
+                        intent.putExtra("correct", getCorrectAnswers());
+                        intent.putExtra("incorrect", getInCorrectAnswers());
+
+
+                        startActivity(intent);
+                        finish();
+                    }
+                });
+
+            } else {
+                Log.d("TAG", "The interstitial ad wasn't ready yet.");
+
+                Intent intent = new Intent(QuizActivity.this, QuizResults.class);
+
+                intent.putExtra("correct", getCorrectAnswers());
+                intent.putExtra("incorrect", getInCorrectAnswers());
+
+
+                startActivity(intent);
+                finish();
+
+            }
         }
+    }
+
+
+    private void LoadAds() {
+
+        AdRequest adRequest = new AdRequest.Builder().build();
+
+        InterstitialAd.load(this, "ca-app-pub-3940256099942544/1033173712", adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        // The mInterstitialAd reference will be null until
+                        // an ad is loaded.
+                        mInterstitialAd = interstitialAd;
+                        Log.i("TAG", "onAdLoaded");
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        // Handle the error
+                        Log.d("TAG", loadAdError.toString());
+                        mInterstitialAd = null;
+                    }
+                });
     }
 }
