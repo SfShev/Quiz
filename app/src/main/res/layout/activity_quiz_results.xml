@@ -1,9 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fone"
     tools:context="QuizResults">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/congraticon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="-70dp"
+        android:layout_marginEnd="10dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/congrad" />
+
+    <TextView
+        android:id="@+id/yourresult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="center"
+        android:layout_below="@+id/congraticon"
+        android:text="Ваш результат: "
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:textSize="28sp"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/yourresult"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:id="@+id/correctAnsw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Правильно: 0"
+            android:textStyle="bold"
+            android:textColor="#00CB55"
+            android:textSize="26sp"
+            />
+        <TextView
+            android:id="@+id/incorrectAnsw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="Неправильно: 0"
+            android:textStyle="bold"
+            android:textColor="#DD2C00"
+            android:textSize="26sp"
+            />
+
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/startNewQuizBtn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="30dp"
+        android:text="Начать новую викторину"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/round_back_green20"
+        />
+
+</RelativeLayout>

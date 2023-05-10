@@ -137,10 +137,13 @@ public class QuizActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if (selectedOptionByUser.isEmpty()) {
+                    Toast.makeText(QuizActivity.this, "Пожалуйста сделайте выбор", Toast.LENGTH_SHORT).show();
+                } else {
+                    changeNextQuestion();
+                }
             }
         });
-
     }
 
     private void startTimer(TextView timerTextView) {
@@ -245,5 +248,44 @@ public class QuizActivity extends AppCompatActivity {
             option4.setTextColor(Color.WHITE);
         }
 
+    }
+
+    private void changeNextQuestion() {
+        currentQuestionPosition++;
+
+        if ((currentQuestionPosition + 1) == questionsLists.size()) {
+            nextBtn.setText("Вот и все!");
+        }
+        if (currentQuestionPosition < questionsLists.size()) {
+            selectedOptionByUser = "";
+
+            option1.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option1.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option2.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option2.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option3.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option3.setTextColor(Color.parseColor("#1F6BB8"));
+
+            option4.setBackgroundResource(R.drawable.round_back_white_stroke2_10);
+            option4.setTextColor(Color.parseColor("#1F6BB8"));
+
+            numberOfQuestion.setText((currentQuestionPosition + 1) + "/" + (questionsLists.size()));
+            question.setText(questionsLists.get(currentQuestionPosition).getQuestion());
+            option1.setText(questionsLists.get(currentQuestionPosition).getOption1());
+            option2.setText(questionsLists.get(currentQuestionPosition).getOption2());
+            option3.setText(questionsLists.get(currentQuestionPosition).getOption3());
+            option4.setText(questionsLists.get(currentQuestionPosition).getOption4());
+        } else{
+            Intent intent = new Intent(QuizActivity.this,QuizResults.class);
+
+            intent.putExtra("correct",getCorrectAnswers());
+            intent.putExtra("incorrect", getInCorrectAnswers());
+
+
+            startActivity(intent);
+            finish();
+        }
     }
 }
