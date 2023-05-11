@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class QuizActivity extends AppCompatActivity {
+    MediaPlayer mediaPlayerNext, mediaPlayerFail, mediaPlayerOption, mediaPlayerBack, mediaPlayerTrue;
 
     private InterstitialAd mInterstitialAd;
     private TextView numberOfQuestion;
@@ -61,6 +63,13 @@ public class QuizActivity extends AppCompatActivity {
         final TextView timer = findViewById(R.id.timer);
         final TextView selectedTopicName = findViewById(R.id.selectedTopicName);
 
+
+        mediaPlayerNext = MediaPlayer.create(this, R.raw.sound_next);
+        mediaPlayerFail = MediaPlayer.create(this, R.raw.sound_fail);
+        mediaPlayerOption = MediaPlayer.create(this, R.raw.sound_option);
+        mediaPlayerBack = MediaPlayer.create(this, R.raw.sound_back);
+        mediaPlayerTrue = MediaPlayer.create(this, R.raw.sound_true);
+
         numberOfQuestion = findViewById(R.id.numberOfQuestion);
         question = findViewById(R.id.question);
 
@@ -91,6 +100,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onClick(View v) {
                 quizTimer.purge();
                 quizTimer.cancel();
+                mediaPlayerBack.start();
 
                 startActivity(new Intent(QuizActivity.this, MainActivity.class));
                 finish();
@@ -104,9 +114,9 @@ public class QuizActivity extends AppCompatActivity {
                     selectedOptionByUser = option1.getText().toString();
                     option1.setBackgroundResource(R.drawable.round_back_red10);
                     option1.setTextColor(Color.WHITE);
-
                     revealAnswer();
                     questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                    soundForAnwerOption(selectedOptionByUser);
                 }
 
             }
@@ -119,11 +129,10 @@ public class QuizActivity extends AppCompatActivity {
                     selectedOptionByUser = option2.getText().toString();
                     option2.setBackgroundResource(R.drawable.round_back_red10);
                     option2.setTextColor(Color.WHITE);
-
                     revealAnswer();
                     questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                    soundForAnwerOption(selectedOptionByUser);
                 }
-
             }
         });
         option3.setOnClickListener(new View.OnClickListener() {
@@ -133,9 +142,9 @@ public class QuizActivity extends AppCompatActivity {
                     selectedOptionByUser = option3.getText().toString();
                     option3.setBackgroundResource(R.drawable.round_back_red10);
                     option3.setTextColor(Color.WHITE);
-
                     revealAnswer();
                     questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                    soundForAnwerOption(selectedOptionByUser);
                 }
 
             }
@@ -148,9 +157,9 @@ public class QuizActivity extends AppCompatActivity {
                     selectedOptionByUser = option4.getText().toString();
                     option4.setBackgroundResource(R.drawable.round_back_red10);
                     option4.setTextColor(Color.WHITE);
-
                     revealAnswer();
                     questionsLists.get(currentQuestionPosition).setUserSelectedAnswer(selectedOptionByUser);
+                    soundForAnwerOption(selectedOptionByUser);
                 }
 
             }
@@ -159,8 +168,10 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (selectedOptionByUser.isEmpty()) {
+                    mediaPlayerFail.start();
                     Toast.makeText(QuizActivity.this, "Пожалуйста сделайте выбор", Toast.LENGTH_SHORT).show();
                 } else {
+                    mediaPlayerNext.start();
                     changeNextQuestion();
                 }
             }
@@ -248,6 +259,7 @@ public class QuizActivity extends AppCompatActivity {
     public void onBackPressed() {
         quizTimer.purge();
         quizTimer.cancel();
+        mediaPlayerBack.start();
 
         startActivity(new Intent(QuizActivity.this, MainActivity.class));
         finish();
@@ -359,5 +371,16 @@ public class QuizActivity extends AppCompatActivity {
                         mInterstitialAd = null;
                     }
                 });
+    }
+
+    private void soundForAnwerOption(String selectedOptionByUser) {
+        final String getAnswer = questionsLists.get(currentQuestionPosition).getAnswer();
+
+        if (selectedOptionByUser.equals(getAnswer)) {
+            mediaPlayerTrue.start();
+        }
+        else {
+            mediaPlayerFail.start();
+        }
     }
 }

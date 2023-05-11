@@ -11,10 +11,11 @@
 
     <ImageView
         android:id="@+id/picP"
+        android:layout_centerHorizontal="true"
         android:layout_width="137dp"
         android:layout_height="126dp"
         android:layout_marginStart="135dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="80dp"
         android:adjustViewBounds="true"
         android:src="@drawable/pic" />
@@ -24,158 +25,318 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/picP"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="90dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:text="Выберете викторину"
+        android:text="@string/choose_quiz"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
-    <!--Start 1 line-->>
 
-    <LinearLayout
-        android:id="@+id/line_1"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/chooseT"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_above="@+id/btnstart"
+        >
 
         <LinearLayout
-            android:id="@+id/filmLayout"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_back_white10"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="146dp"
-                android:layout_height="89dp"
-                android:src="@drawable/film" />
+            <!--Start 1 line-->>
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/line_1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="8dp"
-                android:text="Фильмы"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/filmLayout"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/film" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_1"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/multLayout"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/mult" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_2"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--Конец 1 линия
+            2 линия-->>
+
+            <LinearLayout
+                android:id="@+id/line_2"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/animeLayout"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/naruter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_3"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/serialLayout"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/serial" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_4"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--//Конец 2 линия-->>
+
+
+            <!--Start 3 line-->>
+
+            <LinearLayout
+                android:id="@+id/line_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/filmLayout1"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/film" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_1"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/multLayout1"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/mult" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_2"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--Конец 3 линия
+            4 линия-->>
+
+            <LinearLayout
+                android:id="@+id/line_4"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/line_1"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:id="@+id/animeLayout1"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/naruter" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_3"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/serialLayout1"
+                    android:layout_width="5dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_white10"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="146dp"
+                        android:layout_height="89dp"
+                        android:src="@drawable/serial" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/quiz_name_4"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--//Конец 4 линия-->>
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/multLayout"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_back_white10"
-            android:orientation="vertical"
-            android:padding="20dp">
 
-            <ImageView
-                android:layout_width="146dp"
-                android:layout_height="89dp"
-                android:src="@drawable/mult" />
+    </ScrollView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="8dp"
-                android:text="Мультики"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-    <!--Конец 1 линия
-    2 линия-->>
 
-    <LinearLayout
-        android:id="@+id/line_2"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/line_1"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <LinearLayout
-            android:id="@+id/animeLayout"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_back_white10"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="146dp"
-                android:layout_height="89dp"
-                android:src="@drawable/naruter" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="8dp"
-                android:text="Аниме"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/serialLayout"
-            android:layout_width="5dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginStart="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/round_back_white10"
-            android:orientation="vertical"
-            android:padding="20dp">
-
-            <ImageView
-                android:layout_width="146dp"
-                android:layout_height="89dp"
-                android:src="@drawable/serial" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="8dp"
-                android:text="Сериалы"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-    </LinearLayout>
-    <!--//Конец 2 линия-->>
 
     <!--//Начало кнопка начать-->>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnstart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line_2"
-        android:text="Начать"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="70dp"
+        android:text="@string/start_quiz"
         android:layout_marginTop="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"

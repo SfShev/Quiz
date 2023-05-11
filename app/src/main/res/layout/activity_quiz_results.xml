@@ -26,7 +26,7 @@
         android:layout_marginEnd="10dp"
         android:gravity="center"
         android:layout_below="@+id/congraticon"
-        android:text="Ваш результат: "
+        android:text="@string/result"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="28sp"
@@ -61,14 +61,17 @@
             />
 
     </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startNewQuizBtn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_margin="30dp"
-        android:text="Начать новую викторину"
         android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/round_back_green20"
-        />
+        android:text="@string/startnewquiz" />
 
 </RelativeLayout>
